@@ -47,7 +47,6 @@ public class Loop {
 //            System.out.println("k value " + k);
 //            k++;
 //        }
-        Scanner sn = new Scanner(System.in);
 //        System.out.println("hey how old are you?");
 //        int age;
 //        age= sn.nextInt();
@@ -72,7 +71,9 @@ public class Loop {
 //            System.out.print(email.charAt(u));
 //        }
 //        //System.out.print("reverse Email is ");
-//        //System.out.println(reverseEmail);
+//        System.out.println(reverseEmail);
+
+        Scanner sn = new Scanner(System.in);
 
         boolean exit = false;
         do {
@@ -84,7 +85,11 @@ public class Loop {
             System.out.println("5 - Multiply");
             System.out.println("6 - Prime Number");
             System.out.println("7 - first 100 number is prime");
-            System.out.println("10 - Exit");
+            System.out.println("8- calculateSalary");
+            System.out.println("9- factoial number");
+            System.out.println("10- fibonacci number");
+
+            System.out.println("99 - Exit");
 
             int userChoice = sn.nextInt();
 
@@ -129,15 +134,63 @@ public class Loop {
                     num = sn.nextInt();
                     System.out.println(isPrime(num));
                 }
-                    break;
+                break;
                 case 7:
                     for (int i = 1; i < 100; i++) {
                         //System.out.println(i + " is prime ? "+ isPrime(i));
-                        if(isPrime(i)){
+                        if (isPrime(i)) {
                             System.out.println(i);
                         }
 
                     }
+                    break;
+
+                case 8:
+                    String name;
+                    System.out.println("What is you name?");
+                    name = sn.next();
+                    System.out.println("how many hours do you work ?");
+                    double hours = sn.nextDouble();
+                    System.out.println("how mach do you get annual Salary?");
+                    double salary = sn.nextDouble();
+                    calculateSalary(name, salary, hours);
+
+
+                    break;
+
+                case 9:
+                    int num;
+                    System.out.println("Enter number");
+                    num = sn.nextInt();
+
+                    for (int i = 0; i <= num; i++) {
+                        System.out.println("the factorial number is " + i + " = " + factorial(i));
+
+                    }
+                    break;
+                case 10:
+                    System.out.println("Enter the fibo number");
+                    int num1 = sn.nextInt();
+
+                    for (int j = 0; j < num1; j++) {
+                        System.out.println(j + " = " + fibo(j));
+                        ;
+
+                    }
+
+                    break;
+
+                case 11:
+                    int number = 100;
+
+                    increment(number);
+                    break;
+                case 12:
+                    System.out.println(area(-1));
+
+                    break;
+                case 13:
+
                     break;
 
                 default:
@@ -154,6 +207,61 @@ public class Loop {
 
     }
 
+    //defalt parameters
+    static void feeCalculation(double fee, int payment) {
+
+        if (payment == 1) {
+            System.out.println("you need to pay " + fee / 12 + " every month");
+
+        }
+        if (payment == 2)
+            System.out.println("you need to pay " + fee / 4 + " every quarter");
+    }
+
+    static double area(double x) {
+        return (x < 1) ? -1 : Math.PI * Math.pow(x, 2);
+    }
+
+    static double area(double circle, double circle2) {
+        return 0;
+    }
+
+    static void increment(int number) {
+        number++;
+        System.out.println("increment number is " + number);
+    }
+
+    // recursion
+    static int factorial(int number) {
+        if (number < -1) {
+            return -1;
+        }
+        if (number == 1) {
+            return 1;
+        }
+        return number * factorial(number - 1);
+        // return (number< -1) ? -1 : (number == 1) ? 1 :number * factorial(number-1);
+    }
+
+    public static void calculateSalary(String name, double annualSalary, double workingHours) {
+
+        // (40 * 4 )* 12 = annual salary
+        // (annual / 12) / 4 / workingHours
+        System.out.println();
+        System.out.println("Hello," + name);
+        System.out.format("you are making %.2f CAD/hours", annualSalary / 52 / workingHours);
+
+    }
+
+    //fibonacci
+    public static long fibo(int number) {
+
+        return (number < 1) ? -1 : (number == 1)
+                ? 0 : (number == 2)
+                ? 1 : (fibo(number - 2) + fibo(number - 1));
+
+    }
+
 
     //unlimited parameters
     public static int multiply(int... nums) {
@@ -167,14 +275,14 @@ public class Loop {
 
     public static boolean isPrime(int number) {
 
-        if(number < 2){
+        if (number < 2) {
             return false;
         }
-        if(number == 2){
+        if (number == 2) {
             return true;
         }
         // for (int i = 2; i * i < number); i++)
-        for (int i = 2; i < (int)(Math.sqrt(number)+1); i++) {
+        for (int i = 2; i < (int) (Math.sqrt(number) + 1); i++) {
             if (number % i == 0) {
                 return false;
             }
